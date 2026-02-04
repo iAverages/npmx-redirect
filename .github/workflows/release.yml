@@ -1,0 +1,88 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '25'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test:run
+
+  build-and-release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '25'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build all packages
+        run: pnpm build:all
+
+      - name: Create zip archives
+        run: |
+          cd build
+          zip -r npmx-redirect-chrome-mv3.zip chrome-mv3-prod
+          zip -r npmx-redirect-firefox-mv2.zip firefox-mv2-prod
+          zip -r npmx-redirect-firefox-mv3.zip firefox-mv3-prod
+          zip -r npmx-redirect-edge-mv3.zip edge-mv3-prod
+          zip -r npmx-redirect-brave-mv3.zip brave-mv3-prod
+          zip -r npmx-redirect-opera-mv3.zip opera-mv3-prod
+
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "release_tag=build-$(date +'%Y%m%d-%H%M%S')-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          name: Release ${{ steps.tag.outputs.release_tag }}
+          files: |
+            build/npmx-redirect-chrome-mv3.zip
+            build/npmx-redirect-firefox-mv2.zip
+            build/npmx-redirect-firefox-mv3.zip
+            build/npmx-redirect-edge-mv3.zip
+            build/npmx-redirect-brave-mv3.zip
+            build/npmx-redirect-opera-mv3.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
