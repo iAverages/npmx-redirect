@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "redirect",
+            "redirect": {
+                "regexSubstitution": "https://npmx.dev/package/\\1"
+            }
+        },
+        "condition": {
+            "regexFilter": "^https?://(?:www\\.)?npmjs\\.com/package/(.+)",
+            "resourceTypes": ["main_frame"]
+        }
+    }
+]

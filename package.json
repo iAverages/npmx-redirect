@@ -49,7 +49,32 @@
         ],
         "permissions": [
             "storage",
-            "webNavigation"
-        ]
+            "webNavigation",
+            "declarativeNetRequest"
+        ],
+        "declarative_net_request": {
+            "rule_resources": [
+                {
+                    "id": "orgs",
+                    "enabled": true,
+                    "path": "~/rules/orgs.json"
+                },
+                {
+                    "id": "packages",
+                    "enabled": true,
+                    "path": "~/rules/packages.json"
+                },
+                {
+                    "id": "search",
+                    "enabled": true,
+                    "path": "~/rules/search.json"
+                },
+                {
+                    "id": "users",
+                    "enabled": true,
+                    "path": "~/rules/users.json"
+                }
+            ]
+        }
     }
 }

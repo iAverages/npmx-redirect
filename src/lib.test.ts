@@ -3,7 +3,7 @@ import { handleRedirect } from "./lib";
 import type { Settings } from "./settings";
 
 describe("handleRedirect", () => {
-    let mockRedirectCallback: (() => void)
+    let mockRedirectCallback: () => void;
 
     beforeEach(() => {
         mockRedirectCallback = vi.fn();

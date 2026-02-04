@@ -21,4 +21,4 @@ browser.runtime.onMessage.addListener((message, _, __) => {
     return true;
 });
 
-handleRedirect(getSettings, window.location.href, (url) => window.location.replace(url));
+// handleRedirect(getSettings, window.location.href, (url) => window.location.replace(url));
