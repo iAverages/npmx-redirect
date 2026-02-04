@@ -1,13 +1,17 @@
-import { getSettings, type SettingKeys } from "./settings";
+import { type SettingKeys, type Settings } from "./settings";
 
 const urlPatterns = {
     orgs: /^\/org\/.*$/,
     packages: /^\/package\/.*$/,
     search: /^\/search$/,
-    users: /^~.*$/,
+    users: /^\/~.*$/,
 } satisfies Record<Exclude<SettingKeys, "enabled">, RegExp>;
 
-export const handleRedirect = async (path: string, redirectCallback: (url: string) => void) => {
+export const handleRedirect = async (
+    getSettings: () => Promise<Settings>,
+    path: string,
+    redirectCallback: (url: string) => void,
+) => {
     const settings = await getSettings();
     if (!settings.enabled) return;
 

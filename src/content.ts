@@ -1,6 +1,7 @@
 import browser from "webextension-polyfill";
 import type { PlasmoCSConfig } from "plasmo";
 import { handleRedirect } from "./lib";
+import { getSettings } from "./settings";
 
 export const config: PlasmoCSConfig = {
     matches: ["*://*.npmjs.com/*"],
@@ -20,4 +21,4 @@ browser.runtime.onMessage.addListener((message, _, __) => {
     return true;
 });
 
-handleRedirect(window.location.href, (url) => window.location.replace(url));
+handleRedirect(getSettings, window.location.href, (url) => window.location.replace(url));

@@ -14,7 +14,7 @@ const DEFAULT_SETTINGS = {
     search: true,
     users: true,
     orgs: true,
-} as const;
+};
 export type Settings = typeof DEFAULT_SETTINGS;
 export type SettingKeys = keyof typeof DEFAULT_SETTINGS;
 
