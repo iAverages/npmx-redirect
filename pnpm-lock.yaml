@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@plasmohq/storage':
+        specifier: ^1.15.0
+        version: 1.15.0(react@18.2.0)
       plasmo:
         specifier: 0.90.5
         version: 0.90.5(@swc/core@1.15.11(@swc/helpers@0.5.18))(@swc/helpers@0.5.18)(@types/node@20.11.5)(postcss@8.5.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -17,6 +20,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      webextension-polyfill:
+        specifier: ^0.12.0
+        version: 0.12.0
     devDependencies:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.1.1
@@ -33,6 +39,9 @@ importers:
       '@types/react-dom':
         specifier: 18.2.18
         version: 18.2.18
+      '@types/webextension-polyfill':
+        specifier: ^0.12.4
+        version: 0.12.4
       oxfmt:
         specifier: ^0.28.0
         version: 0.28.0
@@ -1290,6 +1299,14 @@ packages:
     resolution: {integrity: sha512-/3oVbajt+DRqtbM0RkKFtfyZR8DVjcsYpj1jHqPParGVBiXwgP0D/8Bj5p5/5Iqihs08gzasTcjKcwQKKdj0og==}
     engines: {parcel: '>= 2.7.0'}
 
+  '@plasmohq/storage@1.15.0':
+    resolution: {integrity: sha512-zBZ2NyVyvZlql2XHsjkZDL0+bqF6lir9RygeTnkYGF253M8DZttuSvjpsmpK6OWYmRXjhEqJeubd3+Zq9kuZ0w==}
+    peerDependencies:
+      react: ^16.8.6 || ^17 || ^18 || ^19.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+
   '@pnpm/config.env-replace@1.1.0':
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
     engines: {node: '>=12.22.0'}
@@ -1583,6 +1600,9 @@ packages:
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
+
+  '@types/webextension-polyfill@0.12.4':
+    resolution: {integrity: sha512-wK8YdSI0pDiaehSLDIvtvonYmLwUUivg4Z6JCJO8rkyssMAG82cFJgwPK/V7NO61mJBLg/tXeoXQL8AFzpXZmQ==}
 
   '@vue/compiler-core@3.3.4':
     resolution: {integrity: sha512-cquyDNvZ6jTbf/+x+AgM2Arrp6G4Dzbb0R64jiG804HRMfRiFXWI6kqUVqZ6ZR0bQhIoQjB4+2bhNtVwndW15g==}
@@ -2605,6 +2625,10 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
 
+  pify@6.1.0:
+    resolution: {integrity: sha512-KocF8ve28eFjjuBKKGvzOBGzG8ew2OqOOSxTTZhirkzH7h3BI1vyzqlR0qbfcDBve1Yzo3FVlWUAtCRrbVN8Fw==}
+    engines: {node: '>=14.16'}
+
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
@@ -2996,6 +3020,9 @@ packages:
 
   weak-lru-cache@1.2.2:
     resolution: {integrity: sha512-DEAoo25RfSYMuTGc9vPJzZcZullwIqRDSI9LOy+fkCJPi6hykCnfKaXTuPBDuXAUcqHXyOgFtHNp/kB2FjYHbw==}
+
+  webextension-polyfill@0.12.0:
+    resolution: {integrity: sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==}
 
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
@@ -4582,6 +4609,12 @@ snapshots:
       - walrus
       - whiskers
 
+  '@plasmohq/storage@1.15.0(react@18.2.0)':
+    dependencies:
+      pify: 6.1.0
+    optionalDependencies:
+      react: 18.2.0
+
   '@pnpm/config.env-replace@1.1.0': {}
 
   '@pnpm/network.ca-file@1.0.2':
@@ -4826,6 +4859,8 @@ snapshots:
   '@types/scheduler@0.26.0': {}
 
   '@types/trusted-types@2.0.7': {}
+
+  '@types/webextension-polyfill@0.12.4': {}
 
   '@vue/compiler-core@3.3.4':
     dependencies:
@@ -5812,6 +5847,8 @@ snapshots:
   pify@4.0.1:
     optional: true
 
+  pify@6.1.0: {}
+
   pirates@4.0.7: {}
 
   plasmo@0.90.5(@swc/core@1.15.11(@swc/helpers@0.5.18))(@swc/helpers@0.5.18)(@types/node@20.11.5)(postcss@8.5.6)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
@@ -6270,6 +6307,8 @@ snapshots:
       '@vue/shared': 3.3.4
 
   weak-lru-cache@1.2.2: {}
+
+  webextension-polyfill@0.12.0: {}
 
   webidl-conversions@4.0.2: {}
 
