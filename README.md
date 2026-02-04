@@ -1,33 +1,99 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# npmx-redirect
 
-## Getting Started
+Browser extension that automatically redirects npmjs.com URLs to npmx.dev.
 
-First, run the development server:
+## Installation
+
+### Download from GitHub Releases
+
+1. Visit the [GitHub Releases](https://github.com/iAverage/npmx-redirect/releases) page
+2. Download the appropriate ZIP file for your browser:
+   - Chrome: `npmx-redirect-chrome-mv3.zip`
+   - Firefox: `npmx-redirect-firefox-mv3.zip` (or `npmx-redirect-firefox-mv2.zip` for older versions)
+   - Edge: `npmx-redirect-edge-mv3.zip`
+   - Brave: `npmx-redirect-brave-mv3.zip`
+   - Opera: `npmx-redirect-opera-mv3.zip`
+3. Extract the ZIP file to a folder on your computer
+
+### Install in Chrome
+
+1. Open Chrome and navigate to `chrome://extensions/`
+2. Enable "Developer mode" using the toggle in the top right
+3. Click "Load unpacked"
+4. Select the extracted extension folder (e.g., `chrome-mv3-prod`)
+5. The extension is now installed and active
+
+### Install in Firefox
+
+1. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`
+2. Click "Load Temporary Add-on"
+3. Navigate to the extracted extension folder and select the `manifest.json` file
+4. The extension is now installed and active
+
+Note: Firefox requires re-loading temporary extensions after each browser restart.
+
+### Webstores
+
+Currently this extension is not within any webstores.
+
+## Usage
+
+Once installed, the extension automatically redirects all npmjs.com URLs to their npmx.dev equivalents:
+
+- `https://www.npmjs.com/package/react` redirects to `https://npmx.dev/package/react`
+- `https://www.npmjs.com/~username` redirects to `https://npmx.dev/~username`
+- `https://www.npmjs.com/org/example` redirects to `https://npmx.dev/org/example`
+- Search queries are also redirected
+
+No configuration required.
+
+## Development
+
+### Prerequisites
+
+- Node.js 20+
+- pnpm
+
+### Setup
 
 ```bash
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-npm run dev
 ```
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+Load the development build from `build/chrome-mv3-dev` (or your target browser) in your browser.
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
-
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
+### Build
 
 ```bash
-pnpm build
-# or
-npm run build
+# Build for all browsers
+pnpm build:all
+
+# Build for specific browser
+pnpm build:chrome
+pnpm build:firefox
+pnpm build:edge
 ```
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+Production builds are output to the `build/` directory.
 
-## Submit to the webstores
+### Testing
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+```bash
+# Run tests
+pnpm test
+
+# Run tests with UI
+pnpm test:ui
+```
+
+## Contributing
+
+Contributions are welcome.
+
+## License
+
+MIT
