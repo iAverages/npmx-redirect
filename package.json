@@ -26,7 +26,7 @@
     },
     "manifest": {
         "host_permissions": [
-            "https://*/*"
+            "*://*.npmjs.com/*"
         ]
     }
 }
