@@ -42,7 +42,8 @@
             "*://*.npmjs.com/*"
         ],
         "permissions": [
-            "storage"
+            "storage",
+            "webNavigation"
         ]
     }
 }

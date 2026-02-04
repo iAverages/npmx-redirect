@@ -1,7 +1,9 @@
 import { Storage } from "@plasmohq/storage";
+import { useStorage } from "@plasmohq/storage/hook";
 
 const store = new Storage({
     area: "local",
+    allCopied: true,
 });
 
 const SETTINGS_KEY = "settings";
@@ -37,4 +39,12 @@ export const setSettings = async (settings: Settings) => {
     await store.set(SETTINGS_KEY, value);
 };
 
-export const useSettings = () => {};
+export const useSettings = () => {
+    return useStorage(
+        {
+            key: SETTINGS_KEY,
+            instance: store,
+        },
+        (value) => (typeof value === "undefined" ? DEFAULT_SETTINGS : value),
+    );
+};
