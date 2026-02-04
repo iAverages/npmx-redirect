@@ -8,11 +8,11 @@ Browser extension that automatically redirects npmjs.com URLs to npmx.dev.
 
 1. Visit the [GitHub Releases](https://github.com/iAverage/npmx-redirect/releases) page
 2. Download the appropriate ZIP file for your browser:
-   - Chrome: `npmx-redirect-chrome-mv3.zip`
-   - Firefox: `npmx-redirect-firefox-mv3.zip` (or `npmx-redirect-firefox-mv2.zip` for older versions)
-   - Edge: `npmx-redirect-edge-mv3.zip`
-   - Brave: `npmx-redirect-brave-mv3.zip`
-   - Opera: `npmx-redirect-opera-mv3.zip`
+    - Chrome: `npmx-redirect-chrome-mv3.zip`
+    - Firefox: `npmx-redirect-firefox-mv3.zip` (or `npmx-redirect-firefox-mv2.zip` for older versions)
+    - Edge: `npmx-redirect-edge-mv3.zip`
+    - Brave: `npmx-redirect-brave-mv3.zip`
+    - Opera: `npmx-redirect-opera-mv3.zip`
 3. Extract the ZIP file to a folder on your computer
 
 ### Install in Chrome
