@@ -1,4 +1,4 @@
-import { type SettingKeys, type Settings } from "./settings";
+import type { SettingKeys, Settings } from "./settings";
 
 const urlPatterns = {
     orgs: /^\/org\/.*$/,
