@@ -4,6 +4,11 @@ Browser extension that automatically redirects npmjs.com URLs to npmx.dev.
 
 ## Installation
 
+### Install from Webstores
+
+- Chrome Web Store - not yet available, in review.
+- [Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/npmx-redirect/)
+
 ### Download from GitHub Releases
 
 1. Visit the [GitHub Releases](https://github.com/iAverage/npmx-redirect/releases) page
@@ -31,10 +36,6 @@ Browser extension that automatically redirects npmjs.com URLs to npmx.dev.
 4. The extension is now installed and active
 
 Note: Firefox requires re-loading temporary extensions after each browser restart.
-
-### Webstores
-
-Currently this extension is not within any webstores.
 
 ## Usage
 
