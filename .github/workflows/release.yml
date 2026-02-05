@@ -56,13 +56,12 @@ jobs:
 
       - name: Create zip archives
         run: |
-          cd build
-          zip -r npmx-redirect-chrome-mv3.zip chrome-mv3-prod
-          zip -r npmx-redirect-firefox-mv2.zip firefox-mv2-prod
-          zip -r npmx-redirect-firefox-mv3.zip firefox-mv3-prod
-          zip -r npmx-redirect-edge-mv3.zip edge-mv3-prod
-          zip -r npmx-redirect-brave-mv3.zip brave-mv3-prod
-          zip -r npmx-redirect-opera-mv3.zip opera-mv3-prod
+          (cd build/chrome-mv3-prod && zip -r ../npmx-redirect-chrome-mv3.zip .)
+          (cd build/firefox-mv2-prod && zip -r ../npmx-redirect-firefox-mv2.zip .)
+          (cd build/firefox-mv3-prod && zip -r ../npmx-redirect-firefox-mv3.zip .)
+          (cd build/edge-mv3-prod && zip -r ../npmx-redirect-edge-mv3.zip .)
+          (cd build/brave-mv3-prod && zip -r ../npmx-redirect-brave-mv3.zip .)
+          (cd build/opera-mv3-prod && zip -r ../npmx-redirect-opera-mv3.zip .)
 
       - name: Generate release tag
         id: tag
