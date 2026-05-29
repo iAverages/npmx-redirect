@@ -19,15 +19,17 @@ const DEFAULT_SETTINGS = {
 export type Settings = typeof DEFAULT_SETTINGS;
 export type SettingKeys = keyof typeof DEFAULT_SETTINGS;
 
+const createSettings = (settings: unknown = {}): Settings => ({
+    ...DEFAULT_SETTINGS,
+    ...(settings && typeof settings === "object" ? settings : {}),
+});
+
 export const getSettings = async () => {
     try {
         const stored = await store.get(SETTINGS_KEY);
-        return Object.entries(stored).reduce<Settings>((acc, [key, value]) => {
-            if (key in DEFAULT_SETTINGS) acc[key] = !!value;
-            return acc;
-        }, DEFAULT_SETTINGS);
+        return createSettings(stored);
     } catch {
-        return DEFAULT_SETTINGS;
+        return createSettings();
     }
 };
 
@@ -59,32 +61,26 @@ const handleRulesetUpdates = async (settings: Settings) => {
 };
 
 export const setSettings = async (settings: Settings) => {
-    const value = Object.entries(settings).reduce<Settings>((acc, [key, value]) => {
-        if (key in DEFAULT_SETTINGS) acc[key] = !!value;
-        return acc;
-    }, DEFAULT_SETTINGS);
+    const value = createSettings(settings);
 
     await store.set(SETTINGS_KEY, value);
-    handleRulesetUpdates(value);
+    await handleRulesetUpdates(value);
 };
 
-export const useSettings = () => {
-    const [storeSettings, setStoreSettings] = useStorage(
+export const useSettings = (): [Settings, (settings: Settings) => Promise<void>] => {
+    const [storeSettings, setStoreSettings] = useStorage<Settings>(
         {
             key: SETTINGS_KEY,
             instance: store,
         },
-        (value) => (typeof value === "undefined" ? DEFAULT_SETTINGS : value),
+        createSettings,
     );
 
     const setSettings = async (settings: Settings) => {
-        const value = Object.entries(settings).reduce<Settings>((acc, [key, value]) => {
-            if (key in DEFAULT_SETTINGS) acc[key] = !!value;
-            return acc;
-        }, DEFAULT_SETTINGS);
+        const value = createSettings(settings);
 
-        setStoreSettings(value);
-        handleRulesetUpdates(value);
+        await setStoreSettings(value);
+        await handleRulesetUpdates(value);
     };
 
     return [storeSettings, setSettings];

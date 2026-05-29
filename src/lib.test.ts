@@ -3,10 +3,10 @@ import { handleRedirect } from "./lib";
 import type { Settings } from "./settings";
 
 describe("handleRedirect", () => {
-    let mockRedirectCallback: () => void;
+    let mockRedirectCallback: ReturnType<typeof vi.fn<(url: string) => void>>;
 
     beforeEach(() => {
-        mockRedirectCallback = vi.fn();
+        mockRedirectCallback = vi.fn<(url: string) => void>();
     });
 
     const createSettings = (overrides: Partial<Settings> = {}): (() => Promise<Settings>) => {
