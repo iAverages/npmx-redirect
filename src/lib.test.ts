@@ -1,6 +1,47 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { handleRedirect } from "./lib";
+import { getOmniboxRedirectUrl, getOmniboxSuggestions, handleRedirect } from "./lib";
 import type { Settings } from "./settings";
+
+describe("getOmniboxRedirectUrl", () => {
+    it("should redirect package queries to package pages", () => {
+        expect(getOmniboxRedirectUrl("react")).toBe("https://npmx.dev/package/react");
+    });
+
+    it("should preserve scoped package paths", () => {
+        expect(getOmniboxRedirectUrl("@babel/core")).toBe("https://npmx.dev/package/@babel/core");
+    });
+
+    it("should redirect search-prefixed queries to search pages", () => {
+        expect(getOmniboxRedirectUrl("search react router")).toBe("https://npmx.dev/search?q=react%20router");
+        expect(getOmniboxRedirectUrl("s react")).toBe("https://npmx.dev/search?q=react");
+        expect(getOmniboxRedirectUrl("? react")).toBe("https://npmx.dev/search?q=react");
+    });
+
+    it("should redirect empty queries to the npmx homepage", () => {
+        expect(getOmniboxRedirectUrl(" ")).toBe("https://npmx.dev");
+    });
+});
+
+describe("getOmniboxSuggestions", () => {
+    it("should suggest package and search destinations", () => {
+        expect(getOmniboxSuggestions("react")).toEqual([
+            {
+                content: "react",
+                description: "Open package <match>react</match> on npmx",
+            },
+            {
+                content: "search react",
+                description: "Search npmx for <match>react</match>",
+            },
+        ]);
+    });
+
+    it("should escape omnibox description markup", () => {
+        expect(getOmniboxSuggestions("<react&test>")[0].description).toBe(
+            "Open package <match>&lt;react&amp;test&gt;</match> on npmx",
+        );
+    });
+});
 
 describe("handleRedirect", () => {
     let mockRedirectCallback: ReturnType<typeof vi.fn<(url: string) => void>>;

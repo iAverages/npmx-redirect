@@ -54,6 +54,9 @@
             "webNavigation",
             "declarativeNetRequest"
         ],
+        "omnibox": {
+            "keyword": "npmx"
+        },
         "declarative_net_request": {
             "rule_resources": [
                 {
