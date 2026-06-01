@@ -10,7 +10,8 @@
         },
         "condition": {
             "regexFilter": "^https?://(?:www\\.)?npmjs\\.com/org/(.+)",
-            "resourceTypes": ["main_frame"]
+            "resourceTypes": ["main_frame"],
+            "excludedInitiatorDomains": ["npmx.dev"]
         }
     }
 ]
