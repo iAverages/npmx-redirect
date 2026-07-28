@@ -124,6 +124,21 @@ describe("handleRedirect", () => {
                 await handleRedirect(settings, "https://npmjs.com/org/babel", mockRedirectCallback);
                 expect(mockRedirectCallback).not.toHaveBeenCalled();
             });
+
+            it("should not redirect org creation and invitation pages", async () => {
+                const settings = createSettings({ orgs: true });
+
+                for (const url of [
+                    "https://npmjs.com/org/create",
+                    "https://npmjs.com/org/create/",
+                    "https://npmjs.com/org/babel/invite",
+                    "https://npmjs.com/org/babel/invite?next=/org/babel",
+                ]) {
+                    await handleRedirect(settings, url, mockRedirectCallback);
+                }
+
+                expect(mockRedirectCallback).not.toHaveBeenCalled();
+            });
         });
 
         describe("search URLs", () => {

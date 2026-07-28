@@ -1,7 +1,7 @@
 import type { SettingKeys, Settings } from "./settings";
 
 const urlPatterns = {
-    orgs: /^\/org\/.*$/,
+    orgs: /^\/org\/(?!(?:create|[^/]+\/invite)\/?$).+$/,
     packages: /^\/package\/.*$/,
     search: /^\/search$/,
     users: /^\/~.*$/,
